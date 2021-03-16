@@ -1,0 +1,925 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>5.2_Hbase数据模型 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="07_hbase的安装与shell操作.html" />
+    
+    
+    <link rel="prev" href="05_hBase简介与环境部署.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">一 推荐系统简介</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../day01_推荐系统介绍/01_推荐系统简介.html">
+            
+                <a href="../day01_推荐系统介绍/01_推荐系统简介.html">
+            
+                    
+                    1.1_推荐系统简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../day01_推荐系统介绍/02_推荐系统架构设计.html">
+            
+                <a href="../day01_推荐系统介绍/02_推荐系统架构设计.html">
+            
+                    
+                    1.2_推荐系统架构设计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../day01_推荐系统介绍/03_推荐算法.html">
+            
+                <a href="../day01_推荐系统介绍/03_推荐算法.html">
+            
+                    
+                    1.3_推荐算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../day01_推荐系统介绍/04_案例--基于协同过滤的电影推荐.html">
+            
+                <a href="../day01_推荐系统介绍/04_案例--基于协同过滤的电影推荐.html">
+            
+                    
+                    1.4_案例--基于协同过滤的电影推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../day01_推荐系统介绍/07_ 推荐系统评估.html">
+            
+                <a href="../day01_推荐系统介绍/07_ 推荐系统评估.html">
+            
+                    
+                    1.5_推荐系统评估
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../day01_推荐系统介绍/08_ 推荐系统冷启动问题.html">
+            
+                <a href="../day01_推荐系统介绍/08_ 推荐系统冷启动问题.html">
+            
+                    
+                    1.6_推荐系统的冷启动问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">二 推荐系统算法</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../day02_推荐算法/01_基于模型的协同过滤推荐.html">
+            
+                <a href="../day02_推荐算法/01_基于模型的协同过滤推荐.html">
+            
+                    
+                    2.1_基于模型的协同过滤推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../day02_推荐算法/03_基于回归模型的协同过滤推荐.html">
+            
+                <a href="../day02_推荐算法/03_基于回归模型的协同过滤推荐.html">
+            
+                    
+                    2.2_基于回归模型的协同过滤推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../day02_推荐算法/04_基于矩阵分解的协同过滤推荐.html">
+            
+                <a href="../day02_推荐算法/04_基于矩阵分解的协同过滤推荐.html">
+            
+                    
+                    2.3_基于矩阵分解的协同过滤推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../day02_推荐算法/06_BiasSVD算法实现.html">
+            
+                <a href="../day02_推荐算法/06_BiasSVD算法实现.html">
+            
+                    
+                    2.4_基于矩阵分解的协同过滤--BiasSVD算法实现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../day02_推荐算法/07_基于内容的推荐算法.html">
+            
+                <a href="../day02_推荐算法/07_基于内容的推荐算法.html">
+            
+                    
+                    2.5_基于内容的推荐算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">三 Hadoop</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../day03_Hadoop/ha1.0.html">
+            
+                <a href="../day03_Hadoop/ha1.0.html">
+            
+                    
+                    3.1_Hadoop概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../day03_Hadoop/ha2.0.html">
+            
+                <a href="../day03_Hadoop/ha2.0.html">
+            
+                    
+                    3.2_分布式文件系统HDFS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../day03_Hadoop/ha3.0.html">
+            
+                <a href="../day03_Hadoop/ha3.0.html">
+            
+                    
+                    3.3_资源管理系统YARN
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../day03_Hadoop/ha4.0.html">
+            
+                <a href="../day03_Hadoop/ha4.0.html">
+            
+                    
+                    3.4_分布式计算框架MapReduce
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../day03_Hadoop/ha5.0.html">
+            
+                <a href="../day03_Hadoop/ha5.0.html">
+            
+                    
+                    3.5_Hadoop相关概念扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">四 Hive</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="01_hive介绍.html">
+            
+                <a href="01_hive介绍.html">
+            
+                    
+                    4.1_Hive基本概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="02_hive的shell操作.html">
+            
+                <a href="02_hive的shell操作.html">
+            
+                    
+                    4.2_Hive的shell操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="03_Hive的函数和自定义函数.html">
+            
+                <a href="03_Hive的函数和自定义函数.html">
+            
+                    
+                    4.3_Hive的函数和自定义函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="04_hive综合案例.html">
+            
+                <a href="04_hive综合案例.html">
+            
+                    
+                    4.4_Hive综合案例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">五 HBase</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="05_hBase简介与环境部署.html">
+            
+                <a href="05_hBase简介与环境部署.html">
+            
+                    
+                    5.1_HBase简介与环境部署
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="6.2" data-path="06_hbase数据模型.html">
+            
+                <a href="06_hbase数据模型.html">
+            
+                    
+                    5.2_Hbase数据模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="07_hbase的安装与shell操作.html">
+            
+                <a href="07_hbase的安装与shell操作.html">
+            
+                    
+                    5.3_Hbase的安装与shell操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="08_HappyBase操作HBase.html">
+            
+                <a href="08_HappyBase操作HBase.html">
+            
+                    
+                    5.4_HappyBase操作HBase
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="10_HBase组件.html">
+            
+                <a href="10_HBase组件.html">
+            
+                    
+                    5.5_HBase组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">六 Spark Core</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../day05_Spark_core/spark_core_1.html">
+            
+                <a href="../day05_Spark_core/spark_core_1.html">
+            
+                    
+                    6.1_Spark入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../day05_Spark_core/spark_core_2.html">
+            
+                <a href="../day05_Spark_core/spark_core_2.html">
+            
+                    
+                    6.2_RDD概念介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="../day05_Spark_core/spark_core_3.html">
+            
+                <a href="../day05_Spark_core/spark_core_3.html">
+            
+                    
+                    6.3_RDD常用算子练习
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="../day05_Spark_core/spark_core_4.html">
+            
+                <a href="../day05_Spark_core/spark_core_4.html">
+            
+                    
+                    6.4Spark-Core案例点击日志分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.5" data-path="../day05_Spark_core/spark_core_5.html">
+            
+                <a href="../day05_Spark_core/spark_core_5.html">
+            
+                    
+                    6.5_Spark-Core案例_ip统计
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.6" data-path="../day05_Spark_core/spark_core_6.html">
+            
+                <a href="../day05_Spark_core/spark_core_6.html">
+            
+                    
+                    6.6_Spark安装部署&standalone模式介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">七 Spark SQL</li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../day06_Spark_sql&Spark_streaming/s1.1.html">
+            
+                <a href="../day06_Spark_sql&Spark_streaming/s1.1.html">
+            
+                    
+                    7.1_Spark SQL简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="../day06_Spark_sql&Spark_streaming/s1.2.html">
+            
+                <a href="../day06_Spark_sql&Spark_streaming/s1.2.html">
+            
+                    
+                    7.2_DataFrame介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.3" data-path="../day06_Spark_sql&Spark_streaming/s1.3.html">
+            
+                <a href="../day06_Spark_sql&Spark_streaming/s1.3.html">
+            
+                    
+                    7.3_Spark SQL 处理JSON数据
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.4" data-path="../day06_Spark_sql&Spark_streaming/s1.4.html">
+            
+                <a href="../day06_Spark_sql&Spark_streaming/s1.4.html">
+            
+                    
+                    7.4Spark SQL案例数据清洗
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">八 Spark Streaming</li>
+        
+        
+    
+        <li class="chapter " data-level="9.1" data-path="../day06_Spark_sql&Spark_streaming/ss1.1.html">
+            
+                <a href="../day06_Spark_sql&Spark_streaming/ss1.1.html">
+            
+                    
+                    8.1_Spark Streaming简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="../day06_Spark_sql&Spark_streaming/ss1.2.html">
+            
+                <a href="../day06_Spark_sql&Spark_streaming/ss1.2.html">
+            
+                    
+                    8.2_Spark Streaming实现WordCount
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.3" data-path="../day06_Spark_sql&Spark_streaming/ss1.3.html">
+            
+                <a href="../day06_Spark_sql&Spark_streaming/ss1.3.html">
+            
+                    
+                    8.3_Spark Steaming的状态操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">九 电商推荐案例</li>
+        
+        
+    
+        <li class="chapter " data-level="10.1" data-path="../day07_推荐系统案例/01_个性化电商广告推荐系统介绍.html">
+            
+                <a href="../day07_推荐系统案例/01_个性化电商广告推荐系统介绍.html">
+            
+                    
+                    9.1_个性化电商广告推荐系统介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2" data-path="../day07_推荐系统案例/02_根据用户行为数据创建ALS模型并召回商品.html">
+            
+                <a href="../day07_推荐系统案例/02_根据用户行为数据创建ALS模型并召回商品.html">
+            
+                    
+                    9.2_根据用户行为数据创建ALS模型并召回商品
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.3" data-path="../day07_推荐系统案例/03_CTR预估数据准备.html">
+            
+                <a href="../day07_推荐系统案例/03_CTR预估数据准备.html">
+            
+                    
+                    9.3_CTR预估数据准备
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.4" data-path="../day07_推荐系统案例/04_逻辑回归实现CTR预估.html">
+            
+                <a href="../day07_推荐系统案例/04_逻辑回归实现CTR预估.html">
+            
+                    
+                    9.4_逻辑回归(LR)实现CTR预估
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.5" data-path="../day07_推荐系统案例/05_离线推荐处理.html">
+            
+                <a href="../day07_推荐系统案例/05_离线推荐处理.html">
+            
+                    
+                    9.5_离线推荐处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.6" data-path="../day07_推荐系统案例/06_实时推荐.html">
+            
+                <a href="../day07_推荐系统案例/06_实时推荐.html">
+            
+                    
+                    9.6_实时推荐
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >5.2_Hbase数据模型</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="52-hbase&#x7684;&#x6570;&#x636E;&#x6A21;&#x578B;">5.2 HBase&#x7684;&#x6570;&#x636E;&#x6A21;&#x578B;</h2>
+<h3 id="&#x5B66;&#x4E60;&#x76EE;&#x6807;">&#x5B66;&#x4E60;&#x76EE;&#x6807;</h3>
+<ul>
+<li>&#x8BB0;&#x5FC6;HBase&#x7684;&#x6570;&#x636E;&#x6A21;&#x578B;</li>
+</ul>
+<h3 id="1-hbase&#x7684;&#x6570;&#x636E;&#x6A21;&#x578B;">1 HBASE&#x7684;&#x6570;&#x636E;&#x6A21;&#x578B;</h3>
+<ul>
+<li><p>NameSpace: &#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x7684;&quot;&#x6570;&#x636E;&#x5E93;&quot;(database)</p>
+</li>
+<li><p>&#x8868;(table)&#xFF1A;&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x7BA1;&#x7406;&#x6570;&#x636E;&#xFF0C;&#x5177;&#x6709;&#x7A00;&#x758F;&#x7684;&#x3001;&#x9762;&#x5411;&#x5217;&#x7684;&#x7279;&#x70B9;&#x3002;HBase&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x5F20;&#x8868;&#xFF0C;&#x5C31;&#x662F;&#x6240;&#x8C13;&#x7684;&#x5927;&#x8868;(Bigtable)&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x4E0A;&#x4EBF;&#x884C;&#xFF0C;&#x4E0A;&#x767E;&#x4E07;&#x5217;&#x3002;&#x5BF9;&#x4E8E;&#x4E3A;&#x503C;&#x4E3A;&#x7A7A;&#x7684;&#x5217;&#xFF0C;&#x5E76;&#x4E0D;&#x5360;&#x7528;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;&#xFF0C;&#x56E0;&#x6B64;&#x8868;&#x53EF;&#x4EE5;&#x8BBE;&#x8BA1;&#x7684;&#x975E;&#x5E38;&#x7A00;&#x758F;&#x3002;</p>
+</li>
+<li><p>&#x884C;(Row)&#xFF1A;&#x5728;&#x8868;&#x91CC;&#x9762;,&#x6BCF;&#x4E00;&#x884C;&#x4EE3;&#x8868;&#x7740;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x5BF9;&#x8C61;,&#x6BCF;&#x4E00;&#x884C;&#x90FD;&#x662F;&#x4EE5;&#x4E00;&#x4E2A;&#x884C;&#x952E;(Row Key)&#x6765;&#x8FDB;&#x884C;&#x552F;&#x4E00;&#x6807;&#x8BC6;&#x7684;, &#x884C;&#x952E;&#x5E76;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x7279;&#x5B9A;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;, &#x4EE5;&#x4E8C;&#x8FDB;&#x5236;&#x7684;&#x5B57;&#x8282;&#x6765;&#x5B58;&#x50A8;</p>
+</li>
+<li><p>&#x5217;(Column): HBase&#x7684;&#x5217;&#x7531; Column family &#x548C; Column qualifier &#x7EC4;&#x6210;, &#x7531;&#x5192;&#x53F7;: &#x8FDB;&#x884C;&#x884C;&#x95F4;&#x9694;, &#x5982; family: qualifier</p>
+</li>
+<li><p>&#x884C;&#x952E;(RowKey)&#xFF1A;&#x7C7B;&#x4F3C;&#x4E8E;MySQL&#x4E2D;&#x7684;&#x4E3B;&#x952E;&#xFF0C;HBase&#x6839;&#x636E;&#x884C;&#x952E;&#x6765;&#x5FEB;&#x901F;&#x68C0;&#x7D22;&#x6570;&#x636E;&#xFF0C;&#x4E00;&#x4E2A;&#x884C;&#x952E;&#x5BF9;&#x5E94;&#x4E00;&#x6761;&#x8BB0;&#x5F55;&#x3002;&#x4E0E;MySQL&#x4E3B;&#x952E;&#x4E0D;&#x540C;&#x7684;&#x662F;&#xFF0C;HBase&#x7684;&#x884C;&#x952E;&#x662F;&#x5929;&#x7136;&#x56FA;&#x6709;&#x7684;&#xFF0C;&#x6BCF;&#x4E00;&#x884C;&#x6570;&#x636E;&#x90FD;&#x5B58;&#x5728;&#x884C;&#x952E;&#x3002;</p>
+</li>
+<li><p>&#x5217;&#x65CF;(ColumnFamily)&#xFF1A;&#x662F;&#x5217;&#x7684;&#x96C6;&#x5408;&#x3002;&#x5217;&#x65CF;&#x5728;&#x8868;&#x5B9A;&#x4E49;&#x65F6;&#x9700;&#x8981;&#x6307;&#x5B9A;&#xFF0C;&#x800C;&#x5217;&#x5728;&#x63D2;&#x5165;&#x6570;&#x636E;&#x65F6;&#x52A8;&#x6001;&#x6307;&#x5B9A;&#x3002;&#x5217;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x90FD;&#x662F;&#x4EE5;&#x4E8C;&#x8FDB;&#x5236;&#x5F62;&#x5F0F;&#x5B58;&#x5728;&#xFF0C;&#x6CA1;&#x6709;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x3002;&#x5728;&#x7269;&#x7406;&#x5B58;&#x50A8;&#x7ED3;&#x6784;&#x4E0A;&#xFF0C;&#x6BCF;&#x4E2A;&#x8868;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x5217;&#x65CF;&#x5355;&#x72EC;&#x4EE5;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x3002;&#x4E00;&#x4E2A;&#x8868;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;&#x5217;&#x7C07;&#x3002;</p>
+</li>
+<li><p>&#x5217;&#x4FEE;&#x9970;&#x7B26;(<em>Column</em> <em>Qualifier</em>) : &#x5217;&#x65CF;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x901A;&#x8FC7;&#x5217;&#x6807;&#x8BC6;&#x6765;&#x8FDB;&#x884C;&#x6620;&#x5C04;, &#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x4E00;&#x4E2A;&#x952E;&#x503C;&#x5BF9;(key-value), &#x5217;&#x4FEE;&#x9970;&#x7B26;(<em>Column</em> <em>Qualifier</em>) &#x5C31;&#x662F;key &#x5BF9;&#x5E94;&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x7684;&#x5217;</p>
+</li>
+<li><p>&#x65F6;&#x95F4;&#x6233;(TimeStamp)&#xFF1A;&#x662F;&#x5217;&#x7684;&#x4E00;&#x4E2A;&#x5C5E;&#x6027;&#xFF0C;&#x662F;&#x4E00;&#x4E2A;64&#x4F4D;&#x6574;&#x6570;&#x3002;&#x7531;&#x884C;&#x952E;&#x548C;&#x5217;&#x786E;&#x5B9A;&#x7684;&#x5355;&#x5143;&#x683C;&#xFF0C;&#x53EF;&#x4EE5;&#x5B58;&#x50A8;&#x591A;&#x4E2A;&#x6570;&#x636E;&#xFF0C;&#x6BCF;&#x4E2A;&#x6570;&#x636E;&#x542B;&#x6709;&#x65F6;&#x95F4;&#x6233;&#x5C5E;&#x6027;&#xFF0C;&#x6570;&#x636E;&#x5177;&#x6709;&#x7248;&#x672C;&#x7279;&#x6027;&#x3002;&#x53EF;&#x6839;&#x636E;&#x7248;&#x672C;(VERSIONS)&#x6216;&#x65F6;&#x95F4;&#x6233;&#x6765;&#x6307;&#x5B9A;&#x67E5;&#x8BE2;&#x5386;&#x53F2;&#x7248;&#x672C;&#x6570;&#x636E;&#xFF0C;&#x5982;&#x679C;&#x90FD;&#x4E0D;&#x6307;&#x5B9A;&#xFF0C;&#x5219;&#x9ED8;&#x8BA4;&#x8FD4;&#x56DE;&#x6700;&#x65B0;&#x7248;&#x672C;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+</li>
+<li><p>&#x533A;&#x57DF;(Region)&#xFF1A;HBase&#x81EA;&#x52A8;&#x628A;&#x8868;&#x6C34;&#x5E73;&#x5212;&#x5206;&#x6210;&#x7684;&#x591A;&#x4E2A;&#x533A;&#x57DF;&#xFF0C;&#x5212;&#x5206;&#x7684;&#x533A;&#x57DF;&#x968F;&#x7740;&#x6570;&#x636E;&#x7684;&#x589E;&#x5927;&#x800C;&#x589E;&#x591A;&#x3002;</p>
+</li>
+<li><p>HBase &#x652F;&#x6301;&#x884C;&#x7EA7;&#x522B;&#x7684;&#x4E8B;&#x52A1;</p>
+</li>
+</ul>
+<h3 id="&#x603B;&#x7ED3;">&#x603B;&#x7ED3;</h3>
+<ul>
+<li>HBase&#x7684;&#x6570;&#x636E;&#x6A21;&#x578B;&#xFF1A;<ul>
+<li>&#x884C;&#x952E;(RowKey)</li>
+<li>&#x5217;&#x65CF;(ColumnFamily)</li>
+<li>&#x5217;&#x4FEE;&#x9970;&#x7B26;(<em>Column</em> <em>Qualifier</em>) </li>
+</ul>
+</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="05_hBase简介与环境部署.html" class="navigation navigation-prev " aria-label="Previous page: 5.1_HBase简介与环境部署">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="07_hbase的安装与shell操作.html" class="navigation navigation-next " aria-label="Next page: 5.3_Hbase的安装与shell操作">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"5.2_Hbase数据模型","level":"6.2","depth":1,"next":{"title":"5.3_Hbase的安装与shell操作","level":"6.3","depth":1,"path":"Hive&HBase/07_hbase的安装与shell操作.md","ref":"Hive&HBase/07_hbase的安装与shell操作.md","articles":[]},"previous":{"title":"5.1_HBase简介与环境部署","level":"6.1","depth":1,"path":"Hive&HBase/05_hBase简介与环境部署.md","ref":"Hive&HBase/05_hBase简介与环境部署.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax","expandable-chapters-small","splitter"],"pluginsConfig":{"splitter":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"mathjax":{"forceSVG":false,"version":"2.6-latest"},"expandable-chapters-small":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Hive&HBase/06_hbase数据模型.md","mtime":"2019-07-10T10:30:17.577Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-18T04:22:40.893Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-mathjax/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
